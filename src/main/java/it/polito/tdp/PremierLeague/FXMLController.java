@@ -63,7 +63,17 @@ public class FXMLController {
 
     @FXML
     void doDreamTeam(ActionEvent event) {
-
+    	int k = -1;
+    	try {
+    		k = Integer.parseInt(txtK.getText());
+    	}catch(NumberFormatException e) {
+    		txtResult.setText("ERRORE - Il valore k deve essere numerico e positivo");
+    		return;
+    	}
+    	
+    	List<Player> dreamTeam = model.trovaDreamTeam(k);
+    	txtResult.appendText(dreamTeam.toString());
+    	
     }
 
     @FXML

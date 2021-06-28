@@ -73,13 +73,39 @@ public class Model {
 
 	private void cerca(List<Player> parziale, List<Player> giocatoriDisponibili, int k) {
 		if(parziale.size()==k) {
-			
+			if(this.getGradoSquadra(parziale)>this.getGradoSquadra(dreamTeam)) {
+				this.bestGrado=this.getGradoSquadra(parziale);
+				this.dreamTeam = new ArrayList<Player>(parziale);
+				return;
+			}
+		}
+		for(Player p : giocatoriDisponibili) {
+			if(!parziale.contains(p)) {
+				parziale.add(p);
+				List<Player> doppione = new ArrayList<Player>(giocatoriDisponibili);
+				doppione.removeAll(Graphs.successorListOf(this.grafo, p));
+				cerca(parziale,doppione,k);
+				parziale.remove(p);
+			}
 		}
 		
 	}
 	public double getGradoSquadra(List<Player> squadra) {
-		double grado =0.0;
-		for
+		double grado =0.0;		
+		for(Player p : squadra) {
+			double in =0.0;
+			double out = 0.0;
+			for(DefaultWeightedEdge e : this.grafo.incomingEdgesOf(p)) {
+				in += this.grafo.getEdgeWeight(e);
+			}
+			for(DefaultWeightedEdge e : this.grafo.outgoingEdgesOf(p)) {
+				out += this.grafo.getEdgeWeight(e);
+			}
+			grado += out-in;
+			
+		}
+		return grado;
+		
 	}
 
 
