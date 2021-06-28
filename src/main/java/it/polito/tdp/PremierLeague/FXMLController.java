@@ -44,7 +44,16 @@ public class FXMLController {
 
     @FXML
     void doCreaGrafo(ActionEvent event) {
-
+    	double soglia = -1.0;
+    	try {
+    		soglia = Double.parseDouble(txtGoals.getText());
+    	}catch(NumberFormatException e) {
+    		txtResult.setText("ERRORE - La soglia deve essere un valore numerico compreso fra 0 ed 1.");
+    		return;
+    	}
+    	model.creaGrafo(soglia);
+    	txtResult.appendText("Grafo creato con "+model.getNVertici()+" vertici e "+model.getNArchi()+" archi.");
+   
     }
 
     @FXML
