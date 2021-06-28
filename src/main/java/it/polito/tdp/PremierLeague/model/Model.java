@@ -18,6 +18,8 @@ public class Model {
 	private Graph<Player,DefaultWeightedEdge> grafo;
 	private PremierLeagueDAO dao;
 	private Map<Integer,Player> idMap;
+	private List<Player> dreamTeam;
+	private double bestGrado;
 
 	public Model() {
 		dao = new PremierLeagueDAO();
@@ -59,6 +61,25 @@ public class Model {
 			result.add(new Adiacenza(best, Graphs.getOppositeVertex(this.grafo, e, best),this.grafo.getEdgeWeight(e)));
 		}
 		return result;
+	}
+	
+	public List<Player> trovaDreamTeam(int k){
+		bestGrado=0.0;
+		this.dreamTeam=null;
+		List<Player> parziale = new ArrayList<>();
+		cerca(parziale, new ArrayList<Player>(this.grafo.vertexSet()), k);
+		return dreamTeam;
+	}
+
+	private void cerca(List<Player> parziale, List<Player> giocatoriDisponibili, int k) {
+		if(parziale.size()==k) {
+			
+		}
+		
+	}
+	public double getGradoSquadra(List<Player> squadra) {
+		double grado =0.0;
+		for
 	}
 
 
