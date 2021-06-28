@@ -72,6 +72,7 @@ public class FXMLController {
     	}
     	
     	List<Player> dreamTeam = model.trovaDreamTeam(k);
+    	txtResult.appendText("DREAM TEAM - Titolarità: "+model.getGradoSquadra(dreamTeam)+"\n");
     	txtResult.appendText(dreamTeam.toString());
     	
     }

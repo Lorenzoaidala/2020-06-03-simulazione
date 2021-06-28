@@ -65,7 +65,7 @@ public class Model {
 	
 	public List<Player> trovaDreamTeam(int k){
 		bestGrado=0.0;
-		this.dreamTeam=null;
+		this.dreamTeam=new ArrayList<>();
 		List<Player> parziale = new ArrayList<>();
 		cerca(parziale, new ArrayList<Player>(this.grafo.vertexSet()), k);
 		return dreamTeam;
